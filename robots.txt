@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bordia98.github.io/timestamp-converter/sitemap.xml

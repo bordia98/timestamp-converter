@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>Unix Timestamp Converter - Epoch to Human Date & Timezones | Free Online Tool</title>
+  <meta name="title" content="Unix Timestamp Converter - Epoch to Human Date & Timezones | Free Online Tool">
+  <meta name="description" content="Convert Unix Epoch timestamps to human-readable dates and multiple global timezones (UTC, EST, PST, GMT, JST, IST). Live epoch clock, batch converter, and relative time calculator. 100% client-side.">
+  <meta name="keywords" content="timestamp converter, epoch converter, unix timestamp, epoch to date, date to epoch, unix time, epoch to utc, timezone converter, developer tools, year 2038">
+  <meta name="author" content="bordia98">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bordia98.github.io/timestamp-converter/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bordia98.github.io/timestamp-converter/">
+  <meta property="og:title" content="Unix Timestamp Converter - Epoch to Human Date & Multiple Timezones">
+  <meta property="og:description" content="Free online Unix timestamp and Epoch converter. Real-time clock, multi-timezone comparison, batch conversions, and date-to-epoch tools.">
+  <meta property="og:site_name" content="Web Developer Tools by bordia98">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://bordia98.github.io/timestamp-converter/">
+  <meta property="twitter:title" content="Unix Timestamp Converter - Epoch to Human Date & Multiple Timezones">
+  <meta property="twitter:description" content="Free online Unix timestamp and Epoch converter. Real-time clock, multi-timezone comparison, batch conversions, and date-to-epoch tools.">
+
+  <!-- Favicon SVG Data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱️</text></svg>">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unix Timestamp & Epoch Converter",
+    "url": "https://bordia98.github.io/timestamp-converter/",
+    "description": "Convert Unix epoch timestamps to human readable dates across multiple global timezones with batch conversion and live clock.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "creator": {
+      "@type": "Person",
+      "name": "bordia98",
+      "url": "https://github.com/bordia98"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Unix Timestamp (Epoch Time)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Unix timestamp is the number of seconds that have elapsed since January 1, 1970 at 00:00:00 UTC, not counting leap seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I tell if an epoch timestamp is in seconds or milliseconds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Timestamps in seconds currently have 10 digits (e.g., 1700000000). Timestamps in milliseconds have 13 digits (e.g., 1700000000000), while microseconds have 16 digits and nanoseconds have 19 digits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Year 2038 Problem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On January 19, 2038 at 03:14:07 UTC, 32-bit signed integers will overflow beyond their maximum value (2,147,483,647) and wrap around to negative numbers. Modern 64-bit systems resolve this problem for the next 292 billion years."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon">⏱️</span>
+        <div>
+          <span class="brand-title">Unix Timestamp Converter</span>
+          <span class="brand-badge">100% Client-Side</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+        <a href="https://github.com/bordia98/timestamp-converter" target="_blank" rel="noopener noreferrer" class="btn-github" title="View Source on GitHub">
+          <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Hero / Live Epoch Banner -->
+    <div class="hero-card">
+      <div class="hero-live-header">
+        <span class="live-pulse"></span>
+        <span class="live-title">CURRENT UNIX EPOCH TIME</span>
+      </div>
+      <div class="epoch-display-container">
+        <div class="epoch-val-wrapper">
+          <span id="currentEpochSec" class="epoch-number">0000000000</span>
+          <span class="epoch-unit">seconds</span>
+        </div>
+        <div class="epoch-divider">|</div>
+        <div class="epoch-val-wrapper">
+          <span id="currentEpochMs" class="epoch-number-sub">0000000000000</span>
+          <span class="epoch-unit">milliseconds</span>
+        </div>
+      </div>
+      <div class="hero-controls">
+        <button id="copyCurrentEpochBtn" class="btn btn-sm btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copy Timestamp</span>
+        </button>
+        <button id="pauseEpochBtn" class="btn btn-sm btn-outline">
+          <span id="pauseIcon">⏸️</span> <span id="pauseLabel">Pause Clock</span>
+        </button>
+        <button id="useCurrentInConverterBtn" class="btn btn-sm btn-outline">
+          <span>Convert Current &darr;</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-container" role="tablist">
+      <button class="tab-btn active" data-tab="epoch-to-date" role="tab" aria-selected="true" aria-controls="tab-epoch-to-date">
+        <span class="tab-icon">🔢</span> Epoch &rarr; Date & Timezones
+      </button>
+      <button class="tab-btn" data-tab="date-to-epoch" role="tab" aria-selected="false" aria-controls="tab-date-to-epoch">
+        <span class="tab-icon">📅</span> Date &rarr; Epoch
+      </button>
+      <button class="tab-btn" data-tab="batch-convert" role="tab" aria-selected="false" aria-controls="tab-batch-convert">
+        <span class="tab-icon">📋</span> Batch Converter
+      </button>
+      <button class="tab-btn" data-tab="cheat-sheet" role="tab" aria-selected="false" aria-controls="tab-cheat-sheet">
+        <span class="tab-icon">⚡</span> Quick Cheat Sheet
+      </button>
+    </div>
+
+    <!-- Tab 1: Epoch to Date & Multiple Timezones -->
+    <div id="tab-epoch-to-date" class="tab-panel active" role="tabpanel">
+      <div class="card converter-main-card">
+        <div class="card-header">
+          <h2 class="section-heading">Convert Epoch to Human-Readable Date</h2>
+          <div class="unit-selector-group">
+            <label class="radio-chip">
+              <input type="radio" name="epochUnit" value="auto" checked>
+              <span>Auto-Detect</span>
+            </label>
+            <label class="radio-chip">
+              <input type="radio" name="epochUnit" value="s">
+              <span>Seconds (s)</span>
+            </label>
+            <label class="radio-chip">
+              <input type="radio" name="epochUnit" value="ms">
+              <span>Milliseconds (ms)</span>
+            </label>
+            <label class="radio-chip">
+              <input type="radio" name="epochUnit" value="us">
+              <span>Microseconds (&mu;s)</span>
+            </label>
+            <label class="radio-chip">
+              <input type="radio" name="epochUnit" value="ns">
+              <span>Nanoseconds (ns)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-action-bar">
+          <div class="input-with-tools">
+            <input type="text" id="epochInput" class="epoch-text-input" placeholder="Enter Epoch timestamp (e.g. 1773446400)..." autofocus>
+            <span id="detectedUnitBadge" class="badge-unit">Detected: Seconds</span>
+          </div>
+          <div class="btn-cluster">
+            <button id="setNowEpochBtn" class="btn btn-outline btn-sm">Set Now</button>
+            <button id="clearEpochInputBtn" class="btn btn-ghost btn-sm">Clear</button>
+          </div>
+        </div>
+
+        <div id="epochErrorMsg" class="error-banner" style="display: none;"></div>
+
+        <!-- Conversion Results Grid -->
+        <div class="results-container">
+          <!-- Primary Timezones Table -->
+          <div class="result-table-wrapper">
+            <table class="timezone-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Timezone / Standard</th>
+                  <th style="width: 55%;">Formatted Date & Time</th>
+                  <th style="width: 20%; text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="timezoneResultsBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Metadata & Details Grid -->
+          <div class="meta-details-grid">
+            <div class="meta-card">
+              <span class="meta-label">Relative Time</span>
+              <span id="resRelative" class="meta-value">-</span>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Day of Year</span>
+              <span id="resDayOfYear" class="meta-value">-</span>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Week Number</span>
+              <span id="resWeekNum" class="meta-value">-</span>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Leap Year?</span>
+              <span id="resLeapYear" class="meta-value">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Date to Epoch -->
+    <div id="tab-date-to-epoch" class="tab-panel" role="tabpanel">
+      <div class="card converter-main-card">
+        <h2 class="section-heading">Convert Human Date & Time to Epoch Timestamp</h2>
+        <p class="section-sub">Select date, time, and timezone to calculate standard Unix timestamps.</p>
+
+        <div class="date-input-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="datePickerInput">Date</label>
+              <input type="date" id="datePickerInput" class="form-control">
+            </div>
+            <div class="form-field">
+              <label for="timePickerInput">Time (HH:MM:SS)</label>
+              <input type="time" id="timePickerInput" step="1" class="form-control">
+            </div>
+            <div class="form-field">
+              <label for="timezonePicker">Target Timezone</label>
+              <select id="timezonePicker" class="form-control">
+                <option value="UTC" selected>UTC (Coordinated Universal Time)</option>
+                <option value="LOCAL">Local Browser Timezone</option>
+                <option value="America/New_York">New York (EST/EDT - UTC-5/-4)</option>
+                <option value="America/Los_Angeles">Los Angeles (PST/PDT - UTC-8/-7)</option>
+                <option value="America/Chicago">Chicago (CST/CDT - UTC-6/-5)</option>
+                <option value="Europe/London">London (GMT/BST - UTC+0/+1)</option>
+                <option value="Europe/Berlin">Berlin / Paris / Amsterdam (CET/CEST - UTC+1/+2)</option>
+                <option value="Asia/Tokyo">Tokyo (JST - UTC+9)</option>
+                <option value="Asia/Singapore">Singapore (SGT - UTC+8)</option>
+                <option value="Asia/Kolkata">India (IST - UTC+5:30)</option>
+                <option value="Asia/Dubai">Dubai (GST - UTC+4)</option>
+                <option value="Australia/Sydney">Sydney (AEST/AEDT - UTC+10/+11)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="setPickerNowBtn" class="btn btn-secondary btn-sm">Set to Current Time</button>
+          </div>
+        </div>
+
+        <!-- Output Outputs -->
+        <div class="output-cards-grid">
+          <div class="epoch-out-card">
+            <div class="out-header">
+              <span class="out-title">Seconds (s)</span>
+              <button class="btn-copy btn-sm copy-out" data-target="outSeconds">Copy</button>
+            </div>
+            <div id="outSeconds" class="out-val">-</div>
+            <span class="out-sub">Standard Unix Timestamp (10 digits)</span>
+          </div>
+
+          <div class="epoch-out-card">
+            <div class="out-header">
+              <span class="out-title">Milliseconds (ms)</span>
+              <button class="btn-copy btn-sm copy-out" data-target="outMillis">Copy</button>
+            </div>
+            <div id="outMillis" class="out-val">-</div>
+            <span class="out-sub">JavaScript Date.now() (13 digits)</span>
+          </div>
+
+          <div class="epoch-out-card">
+            <div class="out-header">
+              <span class="out-title">Microseconds (&mu;s)</span>
+              <button class="btn-copy btn-sm copy-out" data-target="outMicros">Copy</button>
+            </div>
+            <div id="outMicros" class="out-val">-</div>
+            <span class="out-sub">Microsecond timestamp (16 digits)</span>
+          </div>
+
+          <div class="epoch-out-card">
+            <div class="out-header">
+              <span class="out-title">Nanoseconds (ns)</span>
+              <button class="btn-copy btn-sm copy-out" data-target="outNanos">Copy</button>
+            </div>
+            <div id="outNanos" class="out-val">-</div>
+            <span class="out-sub">Nanosecond precision (19 digits)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Batch Timestamp Converter -->
+    <div id="tab-batch-convert" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2 class="section-heading">Batch Timestamp Converter</h2>
+        <p class="section-sub">Paste multiple timestamps (one per line) to convert all of them simultaneously.</p>
+
+        <div class="batch-layout">
+          <div class="batch-input-col">
+            <label for="batchInput" class="batch-label">Input Timestamps (Seconds or Milliseconds)</label>
+            <textarea id="batchInput" class="batch-textarea" rows="8" placeholder="1700000000
+1710000000
+1720000000
+1730000000"></textarea>
+            <div class="batch-actions">
+              <button id="runBatchBtn" class="btn btn-primary btn-sm">Convert Timestamps</button>
+              <button id="sampleBatchBtn" class="btn btn-outline btn-sm">Sample List</button>
+              <button id="clearBatchBtn" class="btn btn-ghost btn-sm">Clear</button>
+            </div>
+          </div>
+
+          <div class="batch-output-col">
+            <div class="batch-output-header">
+              <span class="table-title">Converted Results (<span id="batchCount">0</span>)</span>
+              <button id="exportCsvBtn" class="btn btn-outline btn-sm" disabled>Export to CSV</button>
+            </div>
+            <div class="table-responsive batch-table-wrap">
+              <table class="batch-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>UTC ISO 8601</th>
+                    <th>Local Time</th>
+                    <th>Relative</th>
+                  </tr>
+                </thead>
+                <tbody id="batchResultsBody">
+                  <tr>
+                    <td colspan="4" class="empty-state">Enter timestamps on the left and click "Convert Timestamps".</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Quick Cheat Sheet -->
+    <div id="tab-cheat-sheet" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2 class="section-heading">Common Epoch Timestamps Reference</h2>
+        <p class="section-sub">Quickly lookup frequently referenced time offsets and boundaries.</p>
+
+        <div class="table-responsive">
+          <table class="reference-table">
+            <thead>
+              <tr>
+                <th>Event / Offset</th>
+                <th>Epoch (Seconds)</th>
+                <th>Human Date (UTC)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cheatSheetBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Educational & SEO Section -->
+    <section class="seo-content-section">
+      <article>
+        <h2>The Complete Guide to Unix Epoch & Timestamps</h2>
+        <p>
+          A <strong>Unix timestamp</strong> (also known as <em>Epoch time</em>, <em>POSIX time</em>, or <em>UNIX time</em>) 
+          represents the total number of elapsed seconds since the <strong>Unix Epoch</strong>: <strong>00:00:00 UTC on Thursday, 1 January 1970</strong> (excluding leap seconds). 
+          It serves as the universal standard for measuring time across distributed database systems, operating systems, networking protocols, and web servers.
+        </p>
+
+        <h3>Why January 1, 1970?</h3>
+        <p>
+          When the initial versions of Unix were being developed at Bell Labs in the early 1970s, engineers needed an arbitrary, recent, and round reference point in time. 
+          They chose midnight UTC on January 1, 1970. Because computers measure time by incrementing an integer counter on system clock ticks, 
+          Unix time allows algorithms to perform instantaneous date arithmetic (subtraction, comparison, and sorting) without having to account for irregular calendar complexities like time zones, month lengths, or daylight saving time until final presentation.
+        </p>
+
+        <h3>The Year 2038 Problem (Y2038 / Epochalypse)</h3>
+        <p>
+          In traditional 32-bit computing architectures, Unix timestamps are stored as a <strong>32-bit signed integer</strong>. 
+          The maximum value a 32-bit signed integer can hold is <code>2,147,483,647</code>. 
+          At exactly <strong>03:14:07 UTC on Tuesday, 19 January 2038</strong>, this counter will overflow and wrap into negative numbers (interpreting the date as December 13, 1901).
+        </p>
+        <p>
+          Modern operating systems and 64-bit systems use 64-bit integers for timestamp storage, pushing the next overflow boundary approximately <strong>292 billion years</strong> into the future.
+        </p>
+
+        <h3>How to Get the Current Unix Timestamp in Popular Languages</h3>
+        <div class="table-responsive">
+          <table class="reference-table">
+            <thead>
+              <tr>
+                <th>Language / Environment</th>
+                <th>Current Seconds</th>
+                <th>Current Milliseconds</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>JavaScript / Node.js</strong></td>
+                <td><code>Math.floor(Date.now() / 1000)</code></td>
+                <td><code>Date.now()</code></td>
+              </tr>
+              <tr>
+                <td><strong>Python 3</strong></td>
+                <td><code>import time; int(time.time())</code></td>
+                <td><code>int(time.time() * 1000)</code></td>
+              </tr>
+              <tr>
+                <td><strong>Go (Golang)</strong></td>
+                <td><code>time.Now().Unix()</code></td>
+                <td><code>time.Now().UnixMilli()</code></td>
+              </tr>
+              <tr>
+                <td><strong>Java</strong></td>
+                <td><code>System.currentTimeMillis() / 1000L</code></td>
+                <td><code>System.currentTimeMillis()</code></td>
+              </tr>
+              <tr>
+                <td><strong>PHP</strong></td>
+                <td><code>time()</code></td>
+                <td><code>round(microtime(true) * 1000)</code></td>
+              </tr>
+              <tr>
+                <td><strong>C# (.NET)</strong></td>
+                <td><code>DateTimeOffset.UtcNow.ToUnixTimeSeconds()</code></td>
+                <td><code>DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()</code></td>
+              </tr>
+              <tr>
+                <td><strong>Bash / Linux CLI</strong></td>
+                <td><code>date +%s</code></td>
+                <td><code>date +%s%3N</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Frequently Asked Questions (FAQ)</h3>
+        <div class="faq-container">
+          <details class="faq-item">
+            <summary class="faq-question">Does Unix Epoch include leap seconds?</summary>
+            <div class="faq-answer">
+              <p>No. Standard POSIX time repeats the timestamp value of the 59th second during a leap second, intentionally keeping every day equal to exactly 86,400 seconds to simplify calendar math across computer networks.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">How does auto-detection distinguish seconds from milliseconds?</summary>
+            <div class="faq-answer">
+              <p>Current Unix timestamps in seconds are 10 digits (e.g. <code>1773446400</code>). Millisecond timestamps are 13 digits (e.g. <code>1773446400000</code>). Microseconds are 16 digits, and nanoseconds are 19 digits. Our converter inspects the magnitude of the number and chooses the exact scaling factor automatically.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Is any timestamp data saved on your server?</summary>
+            <div class="faq-answer">
+              <p>Zero data is saved. This application runs entirely inside your browser using the client-side JavaScript <code>Intl.DateTimeFormat</code> API. No server logs or cookies are generated.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 <a href="https://github.com/bordia98" target="_blank" rel="noopener noreferrer">bordia98</a>. Built with privacy in mind &mdash; Free & Open Source under MIT License.</p>
+      <div class="footer-links">
+        <a href="https://github.com/bordia98/timestamp-converter" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+        <span>&bull;</span>
+        <a href="https://github.com/bordia98/url-encoder-decoder" target="_blank" rel="noopener noreferrer">URL Encoder & Decoder</a>
+        <span>&bull;</span>
+        <a href="https://github.com/bordia98/uuid-hash-generator" target="_blank" rel="noopener noreferrer">UUID & Hash Generator</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
